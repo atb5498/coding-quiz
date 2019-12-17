@@ -1,69 +1,65 @@
 var startButton = document.getElementById("start-btn");
 var questionContainer = document.getElementById("question-container");
-
-var randomQuestions, currentQuestionIndex
+var menu = document.getElementById("menu")
+var answerButtons = document.getElementById("answer-buttons");
 
 startButton.addEventListener("click", startGame);
 
 function startGame() {
     startButton.classList.add("hide");
-    randomQuestions = questions.sort(() => Math.random() - .5)
     questionContainer.classList.remove("hide");
-    nextQuestion();
+    menu.style.display = ("none");
+    document.getElementById("question").textContent = questions[0].title;
+    for (var i = 0; i < questions[0].length; i++) {
+        var btn = document.answerButtons.createElement("button");
+    }
 }
 
-function nextQuestion() {
-
+function showQuestion() {
 }
 
 function selectAnswer() {
-
 }
 
 var questions = [
     {
-        question: "What tag is used to define a list item in a bulleted list?",
-        answer: [
-            { text: "<ul>", correct: true },
-            { text: "<uj>", correct: false },
-            { text: "<a>", correct: false },
-            { text: "<li>", correct: false },
-        ]
+        title: "What tag is used to define a list item in a bulleted list?",
+        choices: ["<ul>", "<ui>", "<a>", "<li>"],
+        answer: "<ul>"
     },
     {
-        question: "What tag defines a division or individual section in an HTML document?\n(a) <img>\n(b) <table>\n(c) <meta>\n(d) <div>",
-        answer: "<div>"
-    },
-    {
-        question: "What tag is used to render or transform text into an important (bold) version?\n(a) <em>\n(b) <blockquote>\n(c) <a>\n(d) <strong>",
-        answer: "<strong>"
-    },
-    {
-        question: "What tag is used to define an interactive field where users can enter data?\n(a) <input>\n(b) <datalist>\n(c) <enterpoint>\n(d) <dialog>",
-        answer: "<input>"
-    },
-    {
-        question: "What is the name of the property that is used to define the special state of an element?\n(a) Alignment\n(b) Pseudo-class\n(c) Style\n(d) Syntax",
+        title: "What is the name of the property that is used to define the special state of an element?",
+        choices: ["Alignment", "Pseudo-class", "Style", "Syntax"],
         answer: "Pseudo-class"
     },
     {
-        question: "CSS stands for ____ Style Sheets.\n(a) Content\n(b) Concept\n(c) Cascading\n(d) Context",
+        title: "What tag is used to define an interactive field where users can enter data?",
+        choices: ["<input>", "<datalist>", "<enterpoint>", "<dialog>"],
+        answer: "<input>"
+    },
+    {
+        title: "Which is the correct CSS syntax?",
+        choices: ["body {color: black;}", "body:color=black;", "{body:color=black;}", "{body;color:black;}>"],
+        answer: "body {color: black;}"
+    },
+    {
+        title: "CSS stands for ____ Style Sheets.",
+        choices: ["Content", "Concept", "Cascading", "Context"],
         answer: "Cascading"
     },
     {
-        question: "Where in an HTML document is the correct place to refer to an external style sheet?\n(a) At the end of the document\n(b) In the <head> section\n(c) In the <body> section\n(d) None of the above",
-        answer: "In the <head> section"
-    },
-    {
-        question: "Which HTML tag is used to define an internal style sheet?\n(a) <script>\n(b) <style>\n(c) <css>\n(d) <meta>",
+        title: "Which HTML tag is used to define an internal style sheet?",
+        choices: ["<script>", "<style>", "<css>", "<meta>"],
         answer: "<style>"
     },
     {
-        question: "Inside which HTML element do we put the JavaScript?\n(a) <java>\n(b) <javascript>\n(c) <script>\n(d) <js>",
+        title: "Inside which HTML element do we put the JavaScript?",
+        choices: ["<java>", "<javascript>", "<script>", "<js>"],
         answer: "<script>"
     },
     {
-        question: "How do you call a function named myFunction?\n(a) myFunction()\n(b) call myFunction()\n(c) myFunction()call\n(d) call function myFunction()",
+        title: "How do you call a function named myFunction?",
+        choices: ["myFunction()", "call myFunction()", "myFunction()call", "call function myFunction()"],
         answer: "myFunction()"
     },
-]
+];

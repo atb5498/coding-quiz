@@ -36,8 +36,6 @@ var scoresButton = document.getElementById("score-btn");
 var optionButton = document.getElementById("options");
 var activeQuestion;
 var index = 0;
-questions.choices = false;
-questions.answer = true;
 
 startButton.addEventListener("click", startGame);
 
@@ -73,16 +71,3 @@ function answerCorrect() {
     index++;
     startGame();
 }
-
-// function answerFalse() {
-//     if (activeQuestion.a === "t") {
-//         alert("ACTUALLY THAT WAS TRUE");
-//     } else {
-//         alert("YOU GOT IT RIGHT");
-//     }
-//     index++;
-//     startGame();
-// }
-// $("#false").click(function (event) {
-//     answerFalse();
-// })

@@ -36,6 +36,8 @@ var scoresButton = document.getElementById("score-btn");
 var optionButton = document.getElementById("options");
 var activeQuestion;
 var index = 0;
+questions.choices = false;
+questions.answer = true;
 
 startButton.addEventListener("click", startGame);
 
@@ -56,15 +58,21 @@ function startGame() {
     index++;
 }
 
-// function answerTrue() {
-//     if (activeQuestion.choices === answer) {
-//         alert("YOU GOT IT RIGHT!");
-//     } else {
-//         alert("ACTUALLY THAT WAS FALSE");
-//     }
-//     index++;
-//     startGame();
-// }
+
+$("#options").click(function (event) {
+    answerCorrect();
+})
+
+function answerCorrect() {
+    if (activeQuestion) {
+        alert("CORRECT!");
+    } else {
+        alert("WRONG");
+    }
+    $("#options").children().remove();
+    index++;
+    startGame();
+}
 
 // function answerFalse() {
 //     if (activeQuestion.a === "t") {
@@ -75,9 +83,6 @@ function startGame() {
 //     index++;
 //     startGame();
 // }
-// $("#true").click(function (event) {
-//     answerTrue();
-// })
 // $("#false").click(function (event) {
 //     answerFalse();
 // })

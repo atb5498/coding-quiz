@@ -1,26 +1,3 @@
-var startButton = document.getElementById("start-btn");
-var questionContainer = document.getElementById("question-container");
-var menu = document.getElementById("menu")
-var answerButtons = document.getElementById("answer-buttons");
-
-startButton.addEventListener("click", startGame);
-
-function startGame() {
-    startButton.classList.add("hide");
-    questionContainer.classList.remove("hide");
-    menu.style.display = ("none");
-    document.getElementById("question").textContent = questions[0].title;
-    for (var i = 0; i < questions[0].length; i++) {
-        var btn = document.answerButtons.createElement("button");
-    }
-}
-
-function showQuestion() {
-}
-
-function selectAnswer() {
-}
-
 var questions = [
     {
         title: "What tag is used to define a list item in a bulleted list?",
@@ -38,11 +15,6 @@ var questions = [
         answer: "<input>"
     },
     {
-        title: "Which is the correct CSS syntax?",
-        choices: ["body {color: black;}", "body:color=black;", "{body:color=black;}", "{body;color:black;}>"],
-        answer: "body {color: black;}"
-    },
-    {
         title: "CSS stands for ____ Style Sheets.",
         choices: ["Content", "Concept", "Cascading", "Context"],
         answer: "Cascading"
@@ -57,9 +29,55 @@ var questions = [
         choices: ["<java>", "<javascript>", "<script>", "<js>"],
         answer: "<script>"
     },
-    {
-        title: "How do you call a function named myFunction?",
-        choices: ["myFunction()", "call myFunction()", "myFunction()call", "call function myFunction()"],
-        answer: "myFunction()"
-    },
 ];
+
+var startButton = document.getElementById("start-btn");
+var scoresButton = document.getElementById("score-btn");
+var optionButton = document.getElementById("options");
+var activeQuestion;
+var index = 0;
+
+startButton.addEventListener("click", startGame);
+
+function startGame() {
+    //Hides start and scores buttons
+    startButton.classList.add("hide");
+    scoresButton.classList.add("hide");
+    optionButton.classList.remove("hide");
+    question.classList.remove("hide");
+    //Displays question and choices
+    activeQuestion = questions[index].title;
+    $("#question").text(activeQuestion);
+    for (var i = 0; i < questions[index].choices.length; i++) {
+        var optionsBtn = $("<button>");
+        optionsBtn.text(questions[index].choices[i]);
+        $("#options").append(optionsBtn);
+    }
+    index++;
+}
+
+// function answerTrue() {
+//     if (activeQuestion.choices === answer) {
+//         alert("YOU GOT IT RIGHT!");
+//     } else {
+//         alert("ACTUALLY THAT WAS FALSE");
+//     }
+//     index++;
+//     startGame();
+// }
+
+// function answerFalse() {
+//     if (activeQuestion.a === "t") {
+//         alert("ACTUALLY THAT WAS TRUE");
+//     } else {
+//         alert("YOU GOT IT RIGHT");
+//     }
+//     index++;
+//     startGame();
+// }
+// $("#true").click(function (event) {
+//     answerTrue();
+// })
+// $("#false").click(function (event) {
+//     answerFalse();
+// })

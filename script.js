@@ -31,6 +31,7 @@ var questions = [
     },
 ];
 
+var intro = document.getElementById("intro");
 var startButton = document.getElementById("start-btn");
 var scoresButton = document.getElementById("score-btn");
 var optionButton = document.getElementById("options");
@@ -41,6 +42,7 @@ startButton.addEventListener("click", startGame);
 
 function startGame() {
     //Hides start and scores buttons
+    intro.classList.add("hide");
     startButton.classList.add("hide");
     scoresButton.classList.add("hide");
     optionButton.classList.remove("hide");

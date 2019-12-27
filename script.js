@@ -31,45 +31,31 @@ var questions = [
     },
 ];
 
-var intro = document.getElementById("intro");
+var timer = document.getElementById("timer");
+var menu = document.getElementById("menu");
 var startButton = document.getElementById("start-btn");
-var scoresButton = document.getElementById("score-btn");
-var optionButton = document.getElementById("options");
-var activeQuestion;
+var choice = document.getElementById("choices");
+var question = document.getElementById("question");
 var index = 0;
 
 startButton.addEventListener("click", startGame);
 
 function startGame() {
-    //Hides start and scores buttons
-    intro.classList.add("hide");
-    startButton.classList.add("hide");
-    scoresButton.classList.add("hide");
-    optionButton.classList.remove("hide");
-    question.classList.remove("hide");
-    //Displays question and choices
-    activeQuestion = questions[index].title;
-    $("#question").text(activeQuestion);
-    for (var i = 0; i < questions[index].choices.length; i++) {
-        var optionsBtn = $("<button>");
-        optionsBtn.text(questions[index].choices[i]);
-        $("#options").append(optionsBtn);
+    //Hides menu
+    menu.setAttribute("class", "hide");
+    //Displays current question
+    question.removeAttribute("class", "hide");
+    for (var i = 0; i < questions.length; i++) {
+        var currentQuestion = questions[index].title;
+        question.textContent = currentQuestion;
+    }
+
+    //Displays current choices
+    choice.removeAttribute("class", "hide");
+    for (var i = 0; i < 4; i++) {
+        var choiceButton = document.createElement("button");
+        choiceButton.textContent = questions[index].choices[i];
+        choice.appendChild(choiceButton);
     }
     index++;
-}
-
-
-$("#options").click(function (event) {
-    answerCorrect();
-})
-
-function answerCorrect() {
-    if (activeQuestion) {
-        alert("CORRECT!");
-    } else {
-        alert("WRONG");
-    }
-    $("#options").children().remove();
-    index++;
-    startGame();
 }

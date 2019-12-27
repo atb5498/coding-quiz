@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Coding Quiz</title>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
@@ -36,7 +33,7 @@
                 </div>
 
                 <div class="col-3 col-md-2">
-                    <h1 id="timer">60</h1>
+                    <h1 id="timer"></h1>
                 </div>
 
                 <div class="col-md-3">
@@ -61,35 +58,38 @@
             </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                </div>
+        <div id="menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
 
-                <div class="col-md-6">
-                    <p id="intro">Answer the following code-related questions before time runs out. Incorrect answers
-                        will penalize your time and score by 10 seconds.</p>
-                </div>
+                    <div class="col-md-6">
+                        <p id="intro">Answer the following code-related questions before time runs out. Incorrect
+                            answers
+                            will penalize your time and score by 10 seconds.</p>
+                    </div>
 
-                <div class="col-md-3">
+                    <div class="col-md-3">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
 
-                <div class="col-md-3">
-                    <button id="start-btn">START</button>
-                </div>
+                    <div class="col-md-3">
+                        <button id="start-btn">START</button>
+                    </div>
 
-                <div class="col-md-3">
-                    <button id="score-btn">SCORES</button>
-                </div>
+                    <div class="col-md-3">
+                        <button id="score-btn">SCORES</button>
+                    </div>
 
-                <div class="col-md-3">
+                    <div class="col-md-3">
+                    </div>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div id="options" class="hide">
+                    <div id="choices" class="hide">
                     </div>
                 </div>
 

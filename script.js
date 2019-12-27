@@ -57,26 +57,33 @@ function startQuiz() {
 function getQuestion() {
     var currentQuestion = questions[index].title;
     question.textContent = currentQuestion;
-    choiceDisplay.innerHTML = ""
-    for (var i = 0; i < 4; i++) {
+    choiceDisplay.innerHTML = "";
+
+    questions[index].choices.forEach(function (choice, i) {
+        // create new button for each choice
         var choiceButton = document.createElement("button");
-        choiceButton.textContent = questions[index].choices[i];
+        choiceButton.setAttribute("class", "choice");
+        choiceButton.setAttribute("value", choice);
+        choiceButton.textContent = choice;
+        // attach click event listener to each choice
+        choiceButton.onclick = choiceSelect;
+        // display on the page
         choiceDisplay.appendChild(choiceButton);
-        choiceDisplay.onclick = choiceSelect;
+    });
+}
+
+function choiceSelect() {
+    if (this.value !== questions[index].answer) {
+        time -= 10;
+        timer.textContent = time;
     }
+
+    index++;
+    getQuestion();
 }
 
 // Updates time
 function timeTick() {
     time--;
     timer.textContent = time;
-}
-
-function choiceSelect() {
-    if (this.value !== questions[index].answer) {
-        time -= 10
-        timer.textContent = time;
-    }
-    index++;
-    getQuestion();
 }

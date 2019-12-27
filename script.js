@@ -31,18 +31,26 @@ var questions = [
     },
 ];
 
+
+
 var timer = document.getElementById("timer");
 var menu = document.getElementById("menu");
 var startButton = document.getElementById("start-btn");
 var choice = document.getElementById("choices");
 var question = document.getElementById("question");
+
 var index = 0;
+var time = questions.length * 10;
+var timerId;
 
 startButton.addEventListener("click", startGame);
 
 function startGame() {
     //Hides menu
     menu.setAttribute("class", "hide");
+    //Displays and starts timer
+    timer.textContent = time;
+    timerId = setInterval(timeTick, 1000);
     //Displays current question
     question.removeAttribute("class", "hide");
     for (var i = 0; i < questions.length; i++) {
@@ -56,6 +64,22 @@ function startGame() {
         var choiceButton = document.createElement("button");
         choiceButton.textContent = questions[index].choices[i];
         choice.appendChild(choiceButton);
+        choice.onclick = choiceSelect;
     }
     index++;
+}
+
+function timeTick() {
+    // Updates time
+    time--;
+    timer.textContent = time;
+}
+
+function choiceSelect() {
+    if (this.value !== questions[index].answer) {
+        time -= 10
+        if (time < 0) {
+            time = 0;
+        }
+    }
 }

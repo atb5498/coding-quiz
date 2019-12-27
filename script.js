@@ -31,46 +31,43 @@ var questions = [
     },
 ];
 
-
-
 var timer = document.getElementById("timer");
 var menu = document.getElementById("menu");
 var startButton = document.getElementById("start-btn");
-var choice = document.getElementById("choices");
+var choiceDisplay = document.getElementById("choices");
 var question = document.getElementById("question");
 
 var index = 0;
 var time = questions.length * 10;
 var timerId;
 
-startButton.addEventListener("click", startGame);
+startButton.addEventListener("click", startQuiz);
 
-function startGame() {
+function startQuiz() {
     //Hides menu
     menu.setAttribute("class", "hide");
     //Displays and starts timer
     timer.textContent = time;
     timerId = setInterval(timeTick, 1000);
-    //Displays current question
     question.removeAttribute("class", "hide");
-    for (var i = 0; i < questions.length; i++) {
-        var currentQuestion = questions[index].title;
-        question.textContent = currentQuestion;
-    }
+    choiceDisplay.removeAttribute("class", "hide");
+    getQuestion();
+}
 
-    //Displays current choices
-    choice.removeAttribute("class", "hide");
+function getQuestion() {
+    var currentQuestion = questions[index].title;
+    question.textContent = currentQuestion;
+    choiceDisplay.innerHTML = ""
     for (var i = 0; i < 4; i++) {
         var choiceButton = document.createElement("button");
         choiceButton.textContent = questions[index].choices[i];
-        choice.appendChild(choiceButton);
-        choice.onclick = choiceSelect;
+        choiceDisplay.appendChild(choiceButton);
+        choiceDisplay.onclick = choiceSelect;
     }
-    index++;
 }
 
+// Updates time
 function timeTick() {
-    // Updates time
     time--;
     timer.textContent = time;
 }
@@ -78,8 +75,8 @@ function timeTick() {
 function choiceSelect() {
     if (this.value !== questions[index].answer) {
         time -= 10
-        if (time < 0) {
-            time = 0;
-        }
+        timer.textContent = time;
     }
+    index++;
+    getQuestion();
 }

@@ -26,13 +26,13 @@ var questions = [
     },
     {
         title: "Inside which HTML element do we put the JavaScript?",
-        choices: ["<java>", "<javascript>", "<script>", "<js>"],
+        choices: ["<java>", "<javascript>", "<js>", "<script>"],
         answer: "<script>"
     },
 ];
 
 var timer = document.getElementById("timer");
-var menu = document.getElementById("menu");
+var startMenu = document.getElementById("start-menu");
 var startButton = document.getElementById("start-btn");
 var choiceDisplay = document.getElementById("choices");
 var question = document.getElementById("question");
@@ -44,8 +44,8 @@ var timerId;
 startButton.addEventListener("click", startQuiz);
 
 function startQuiz() {
-    //Hides menu
-    menu.setAttribute("class", "hide");
+    //Hides start menu
+    startMenu.setAttribute("class", "hide");
     //Displays and starts timer
     timer.textContent = time;
     timerId = setInterval(timeTick, 1000);
@@ -59,7 +59,7 @@ function getQuestion() {
     question.textContent = currentQuestion;
     choiceDisplay.innerHTML = "";
 
-    questions[index].choices.forEach(function (choice, i) {
+    questions[index].choices.forEach(function (choice) {
         // create new button for each choice
         var choiceButton = document.createElement("button");
         choiceButton.setAttribute("class", "choice");
@@ -78,12 +78,29 @@ function choiceSelect() {
         timer.textContent = time;
     }
 
+    if (time < 0) {
+        time = 0;
+    }
+
     index++;
-    getQuestion();
+
+    if (index === questions.length) {
+        quizEnd();
+    } else {
+        getQuestion();
+    }
+}
+
+function quizEnd() {
+    clearInterval(timerId);
 }
 
 // Updates time
 function timeTick() {
     time--;
     timer.textContent = time;
+
+    if (time <= 0) {
+        quizEnd();
+    }
 }

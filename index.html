@@ -39,11 +39,7 @@
                 <div class="col-md-3">
                 </div>
             </div>
-        </div>
-    </header>
 
-    <main>
-        <div class="container">
             <div class="row">
                 <div class="col-md-3">
                 </div>
@@ -57,7 +53,10 @@
                 </div>
             </div>
         </div>
+    </header>
 
+    <main>
+        <!--  Section displaying quiz introduction, start button, and scores button  -->
         <div id="start-menu">
             <div class="container">
                 <div class="row">
@@ -81,11 +80,11 @@
                     </div>
 
                     <div class="col-md-3">
-                        <button id="start-btn">START</button>
+                        <button id="start-btn" onclick="startQuiz()">START</button>
                     </div>
 
                     <div class="col-md-3">
-                        <button id="score-btn">SCORES</button>
+                        <button id="score-btn" onclick="printHighscores()">SCORES</button>
                     </div>
 
                     <div class="col-md-3">
@@ -94,6 +93,7 @@
             </div>
         </div>
 
+        <!--  Section displaying question and choices  -->
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -123,7 +123,8 @@
             </div>
         </div>
 
-        <div id="end-menu">
+        <!--  Section displaying final score and initials input  -->
+        <div id="end-menu" class="hide">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
@@ -131,6 +132,61 @@
 
                     <div class="col-md-6">
                         <p id="outro"></p>
+                    </div>
+
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <input id="initials" type="text" class="form-control" placeholder="Enter your initials"
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                                    onclick="saveScore()">SUBMIT</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  Section displaying highscores, menu button, and clear button  -->
+        <div id="highscores-list" class="hide">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+
+                    <div class="col-md-6">
+                        <h2>Highscores</h2>
+                        <ol id="highscores"></ol>
+                    </div>
+
+                    <div class="col-md-3">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+
+                    <div class="col-md-3">
+                        <button id="menu" onclick="window.location.reload()">MENU</button>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button id="clear" onclick="clearHighscores()">CLEAR</button>
                     </div>
 
                     <div class="col-md-3">

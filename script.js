@@ -31,17 +31,20 @@ var questions = [
     },
 ];
 
-var timer = document.getElementById("timer");
 var startMenu = document.getElementById("start-menu");
 var startButton = document.getElementById("start-btn");
-var choiceDisplay = document.getElementById("choices");
+var timer = document.getElementById("timer");
 var question = document.getElementById("question");
+var choiceDisplay = document.getElementById("choices");
+var endMenu = document.getElementById("end-menu");
+var outro = document.getElementById("outro");
+var submitButton = document.getElementById("button-addon2");
+var initialsInput = document.getElementById("initials");
+var highscoresList = document.getElementById("highscores-list")
 
 var index = 0;
 var time = questions.length * 10;
 var timerId;
-
-startButton.addEventListener("click", startQuiz);
 
 function startQuiz() {
     //Hides start menu
@@ -51,6 +54,7 @@ function startQuiz() {
     timerId = setInterval(timeTick, 1000);
     question.removeAttribute("class", "hide");
     choiceDisplay.removeAttribute("class", "hide");
+
     getQuestion();
 }
 
@@ -80,6 +84,7 @@ function choiceSelect() {
 
     if (time < 0) {
         time = 0;
+        timer.textContent = time;
     }
 
     index++;
@@ -91,10 +96,6 @@ function choiceSelect() {
     }
 }
 
-function quizEnd() {
-    clearInterval(timerId);
-}
-
 // Updates time
 function timeTick() {
     time--;
@@ -103,4 +104,61 @@ function timeTick() {
     if (time <= 0) {
         quizEnd();
     }
+}
+
+function quizEnd() {
+    clearInterval(timerId);
+    question.setAttribute("class", "hide");
+    choiceDisplay.setAttribute("class", "hide");
+    endMenu.removeAttribute("class", "hide");
+    outro.textContent = "Your final score is " + time;
+}
+
+function saveScore() {
+    var initials = initialsInput.value.trim();
+
+    if (initials !== "") {
+        // get saved scores from localstorage, or if not any, set to empty array
+        var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+        // format new score object for current user
+        var newScore = {
+            score: time,
+            initials: initials
+        };
+
+        // save to localstorage
+        highscores.push(newScore);
+        window.localStorage.setItem("highscores", JSON.stringify(highscores));
+
+        printHighscores();
+    }
+}
+
+function printHighscores() {
+    startMenu.setAttribute("class", "hide");
+    timer.setAttribute("class", "hide");
+    endMenu.setAttribute("class", "hide");
+    highscoresList.removeAttribute("class", "hide");
+    var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+    // sort highscores by score property in descending order
+    highscores.sort(function (a, b) {
+        return b.score - a.score;
+    });
+
+    highscores.forEach(function (score) {
+        // create li tag for each high score
+        var liTag = document.createElement("li");
+        liTag.textContent = score.initials + " - " + score.score;
+
+        // display on page
+        var olEl = document.getElementById("highscores");
+        olEl.appendChild(liTag);
+    });
+}
+
+function clearHighscores() {
+    window.localStorage.removeItem("highscores");
+    window.location.reload();
 }

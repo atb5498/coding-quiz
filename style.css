@@ -12,6 +12,11 @@ h1 {
     font-size: 35px;
 }
 
+h2 {
+    font-family: 'Inria Serif', serif;
+    font-size: 25px;
+}
+
 #timer {
     text-align: right;
     color: #C8B8DB;
@@ -42,6 +47,29 @@ button {
     font-weight: bold;
 }
 
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem #C8B8DB;
+    border: none;
+}
+
+#button-addon2 {
+    margin-top: 0px;
+    background-color: white;
+    font-weight: bold;
+    color: black;
+    border: 1px solid black;
+    font-family: 'Inria Serif', serif;
+    letter-spacing: 1px;
+}
+
+li {
+    font-family: 'Inria Serif', serif;
+}
+
+li:nth-child(odd) {
+    background-color: #C8B8DB;
+  }
+
 button:hover {
     background-color: #C8B8DB;
 }
@@ -53,4 +81,18 @@ button:active {
 
 button:focus {
     outline: none;
+}
+
+#button-addon2:hover {
+    background-color: #C8B8DB;
+    color: black;
+}
+
+#button-addon2:active {
+    background-color: #70587C;
+    color: #F9F4F5;
+}
+
+#button-addon2:focus {
+    box-shadow: none;
 }

@@ -32,56 +32,58 @@ var questions = [
 ];
 
 var startMenu = document.getElementById("start-menu");
-var startButton = document.getElementById("start-btn");
 var timer = document.getElementById("timer");
 var question = document.getElementById("question");
-var choiceDisplay = document.getElementById("choices");
+var choicesEl = document.getElementById("choices");
 var endMenu = document.getElementById("end-menu");
-var outro = document.getElementById("outro");
-var submitButton = document.getElementById("button-addon2");
-var initialsInput = document.getElementById("initials");
-var highscoresList = document.getElementById("highscores-list")
+var finalScore = document.getElementById("final-score");
+var initialsEl = document.getElementById("initials");
+var highscoresList = document.getElementById("highscores-list");
 
 var index = 0;
 var time = questions.length * 10;
 var timerId;
 
 function startQuiz() {
-    //Hides start menu
     startMenu.setAttribute("class", "hide");
-    //Displays and starts timer
+    // Displays and starts timer
     timer.textContent = time;
     timerId = setInterval(timeTick, 1000);
+
     question.removeAttribute("class", "hide");
-    choiceDisplay.removeAttribute("class", "hide");
+    choicesEl.removeAttribute("class", "hide");
 
     getQuestion();
 }
 
 function getQuestion() {
+    // Gets and displays current question
     var currentQuestion = questions[index].title;
     question.textContent = currentQuestion;
-    choiceDisplay.innerHTML = "";
+    // Clears choices from previous question
+    choicesEl.innerHTML = "";
 
     questions[index].choices.forEach(function (choice) {
-        // create new button for each choice
+        // Creates new button for each choice
         var choiceButton = document.createElement("button");
         choiceButton.setAttribute("class", "choice");
         choiceButton.setAttribute("value", choice);
         choiceButton.textContent = choice;
-        // attach click event listener to each choice
+        // Displays choices
+        choicesEl.appendChild(choiceButton);
+        // Attaches click event listener to each choice
         choiceButton.onclick = choiceSelect;
-        // display on the page
-        choiceDisplay.appendChild(choiceButton);
     });
 }
 
 function choiceSelect() {
+    // Decreases timer by 10 if selected choice is incorrect
     if (this.value !== questions[index].answer) {
         time -= 10;
         timer.textContent = time;
     }
 
+    // Ensures timer does not fall below 0
     if (time < 0) {
         time = 0;
         timer.textContent = time;
@@ -89,6 +91,7 @@ function choiceSelect() {
 
     index++;
 
+    // Ends quiz once all questions have been answered
     if (index === questions.length) {
         quizEnd();
     } else {
@@ -101,33 +104,37 @@ function timeTick() {
     time--;
     timer.textContent = time;
 
+    // Ends quiz if timer reaches 0
     if (time <= 0) {
         quizEnd();
     }
 }
 
 function quizEnd() {
+    // Stops timer
     clearInterval(timerId);
+
     question.setAttribute("class", "hide");
-    choiceDisplay.setAttribute("class", "hide");
+    choicesEl.setAttribute("class", "hide");
     endMenu.removeAttribute("class", "hide");
-    outro.textContent = "Your final score is " + time;
+    // Displays final score
+    finalScore.textContent = "Your final score is " + time;
 }
 
 function saveScore() {
-    var initials = initialsInput.value.trim();
+    var initials = initialsEl.value.trim();
 
     if (initials !== "") {
-        // get saved scores from localstorage, or if not any, set to empty array
+        // Gets saved scores from localstorage. If none, sets to empty array
         var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
 
-        // format new score object for current user
+        // Formats new score object for current user
         var newScore = {
             score: time,
             initials: initials
         };
 
-        // save to localstorage
+        // Saves to localstorage
         highscores.push(newScore);
         window.localStorage.setItem("highscores", JSON.stringify(highscores));
 
@@ -140,24 +147,26 @@ function printHighscores() {
     timer.setAttribute("class", "hide");
     endMenu.setAttribute("class", "hide");
     highscoresList.removeAttribute("class", "hide");
+    // Gets saved scores from localstorage. If none, sets to empty array
     var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
 
-    // sort highscores by score property in descending order
+    // Sorts highscores by score property in descending order
     highscores.sort(function (a, b) {
         return b.score - a.score;
     });
 
     highscores.forEach(function (score) {
-        // create li tag for each high score
+        // Creates li tag for each highscore
         var liTag = document.createElement("li");
         liTag.textContent = score.initials + " - " + score.score;
 
-        // display on page
+        // Displays highscores
         var olEl = document.getElementById("highscores");
         olEl.appendChild(liTag);
     });
 }
 
+// Clears local storage and returns page to start menu
 function clearHighscores() {
     window.localStorage.removeItem("highscores");
     window.location.reload();

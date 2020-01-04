@@ -68,7 +68,7 @@ li {
 
 li:nth-child(odd) {
     background-color: #C8B8DB;
-  }
+}
 
 button:hover {
     background-color: #C8B8DB;
@@ -77,7 +77,7 @@ button:hover {
 button:active {
     background-color: #70587C;
     color: #F9F4F5;
-  }
+}
 
 button:focus {
     outline: none;

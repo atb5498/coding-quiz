@@ -22,10 +22,10 @@ Bootstrap - https://getbootstrap.com/
 
 https://atb5498.github.io/homework4/
 
-![alt text](screen.png "Logo Title Text 1")
+![alt text](/images/screen.png "Logo Title Text 1")
 
-![alt text](screen2.png "Logo Title Text 1")
+![alt text](/images/screen2.png "Logo Title Text 1")
 
-![alt text](screen3.png "Logo Title Text 1")
+![alt text](/images/screen3.png "Logo Title Text 1")
 
-![alt text](screen4.png "Logo Title Text 1")
+![alt text](/images/screen4.png "Logo Title Text 1")

@@ -1,4 +1,4 @@
-# Code Quiz
+# Coding Quiz
 
 This project is intended to produce a multiple choice quiz. The quiz contains six questions related to HTML, CSS, and JavaScript. The user has 60 seconds to complete the quiz. If a question is answered incorrectly the timer is reduced by 10 seconds. Once all questions have been answered or if time runs out, the quiz ends and the final score is given. The resulting time left is the user’s final score.
 
@@ -20,7 +20,7 @@ Bootstrap - https://getbootstrap.com/
 
 # Link
 
-https://atb5498.github.io/homework4/
+https://atb5498.github.io/coding-quiz/
 
 ![alt text](/images/screen.png "Logo Title Text 1")
 
